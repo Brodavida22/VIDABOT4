@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Queen Vida Pairing</title></head>
+<body>
+<h2>Connect WhatsApp</h2>
+<input id="num" placeholder="234XXXXXXXXXX">
+<button onclick="pair()">Connect</button>
+<p id="out"></p>
+
+<script>
+async function pair(){
+const num = document.getElementById("num").value
+const res = await fetch("/pair",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({number:num})
+})
+const data = await res.json()
+document.getElementById("out").innerText = "Code: "+data.code
+}
+</script>
+</body>
+</html>
